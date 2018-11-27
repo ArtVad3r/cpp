@@ -1,7 +1,7 @@
 #include<time.h>
 #include<iostream>
 using namespace std;
-int FindB(int x, int field[], int dlzka){
+int FindB(int x, int field[], int length){
     int start = 1;
     int END = 20;
     int pivot;
