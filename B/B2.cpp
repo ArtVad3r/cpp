@@ -3,71 +3,43 @@
 #include<iostream>
 using namespace std;
 
-/*int NajdiCisloL(int velkost_pola, int hladane_cislo, long *pole)
-{
-	for (int i = 0; i < velkost_pola; i++)
-	{
-		if (pole[i] == hladane_cislo)
-		{
-			return i;
-		}
-	}
-
-	return -1;
-}
-*/
-
-int NajdiCisloL(int x, int pole[], int dlzka)
-{
-	int i = 0;
-	while (i < dlzka && pole[i] != x)
-		i++;
-	if (i < dlzka)
-		return i;
-	else
-		return -1;
+int FindNumb(int x, int field[], int length){
+    int i = 0;
+    while (i < length && field[i] != x)
+        i++;
+    if (i < length)
+        return i;
+    else
+        return -1;
 }
 
+int main(){
+    int x, length;
+    int stat_field[100];
+    int v = 0;
 
-int main()
-{
-	int x, dlzka;
+    cout << "vlozte velkost prehladavanej casti pola \"stat_field\" max (100): ";
+    cin >> length;
+    srand((unsigned)time(NULL));
 
-	int stat_pole[100];
-	int i = 0;
+    for (v = 0; v < length; v++)
+        stat_field[v] = (double)rand() / (RAND_MAX + 1) * 80 + 1;
 
-	cout << "vlozte velkost prehladavanej casti pola \"stat_pole\" max (100): ";
-	cin >> dlzka;
+    cout << length << " vygenerovanych prvkov pola \"stat_field\"" << endl;
+    for (v = 0; v < length; v++)
+    cout << "stat_field[" << v << "] = " << stat_field[v] << endl;
+    cout << endl;
+    cout << "vlozte hladane cislo v zobrazenej casti pola \"stat_field\":" << endl;
+    cin >> x;
 
-	srand((unsigned)time(NULL));
+    int index;
+    index = FindNumb(x, stat_field, length);
+    if (index > -1){
+        cout << "Index prvku pola \"stat_field\" obsahujuci hladane (najdene linearnym vyhladavanim) cislo: " << x << " je : " << index << endl;
+    }
+    else{
+        cout << "Hladane cislo: " << x << " sa nenachadza v poli \"stat_field\"" << endl;
+    }
 
-	for (i = 0; i < dlzka; i++)
-		stat_pole[i] = (double)rand() / (RAND_MAX + 1) * 80 + 1; //tato cast vygerenuje nahodne cisla do pola
-
-	cout << dlzka << " vygenerovanych prvkov pola \"stat_pole\"" << endl;
-	for (i = 0; i < dlzka; i++)
-		cout << "stat_pole[" << i << "] = " << stat_pole[i] << endl;
-
-	cout << endl;
-
-	cout << "vlozte hladane cislo v zobrazenej casti pola \"stat_pole\":" << endl;
-	cin >> x;
-
-	int index;
-	index = NajdiCisloL(x, stat_pole, dlzka); 
-	//index = stat_pole[i];
-	if (index > -1)
-	{
-		cout << "Index prvku pola \"stat_pole\" obsahujuci hladane (najdene linearnym vyhladavanim) cislo: " << x << " je : " << index << endl;
-	}
-	else
-	{
-		cout << "Hladane cislo: " << x << " sa nenachadza v poli \"stat_pole\"" << endl;
-	}
-
-	return 0;
+    return 0;
 }
-
-
-
-//TREBA DOROBIT KED JE VIAC ZHODNYCH CISEL
