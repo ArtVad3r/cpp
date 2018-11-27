@@ -1,84 +1,47 @@
 #include<time.h>
 #include<iostream>
 using namespace std;
+int FindB(int x, int field[], int dlzka){
+    int start = 1;
+    int END = 20;
+    int pivot;
+    pivot = (start + END) / 2;
 
-/*int vyhladavanie(int m, int n, long *cisla)
-{
-	int zaciatok = 1;
-	int koniec = 20;
-	int pivot;
-	pivot = (zaciatok + koniec) / 2;                       // Find Mid Location of Array
-
-	while (zaciatok <= koniec && cisla[pivot] != n)      // Compare Item and Value of Mid
-	{
-		if (cisla[pivot] < n)
-			zaciatok = pivot + 1;
-		else
-			koniec = pivot - 1;
-
-		pivot = (zaciatok + koniec) / 2;
-	}*/
-
-
-int NajdiCisloB(int x, int pole[], int dlzka)
-{
-	int zaciatok = 1;
-	int koniec = 20;
-	int pivot;
-	pivot = (zaciatok + koniec) / 2;                       // Find Mid Location of Array
-
-	while (zaciatok <= koniec && pole[pivot] != x)      // Compare Item and Value of Mid
-	{
-		if (pole[pivot] < x)
-			zaciatok = pivot + 1;
-		else
-			koniec = pivot - 1;
-
-		pivot = (zaciatok + koniec) / 2;
-	}
-
-
-
-	if (pole[pivot] == x)
-	{
-		cout << "\nNasla sa zhoda na indexe : " << pivot << endl;
-	}
-	else
-	{
-		cout << "Nenasla sa zhoda" << endl;
-	}
-
-
-	return pivot;
+    while (start <= END && field[pivot] != x){
+        if (field[pivot] < x)
+            start = pivot + 1;
+        else
+            END = pivot - 1;
+        pivot = (start + END) / 2;
+    }
+    if (field[pivot] == x){
+        cout << "\nZhoda na indexe najdena : " << pivot << endl;
+    }
+    else{
+        cout << "Zhoda nenajdena" << endl;
+    }
+    return pivot;
 }
 
+int main(){
+    int i, x, length;
+    int field[101];
+    cout << "Zadajte velkost pola: ";
+    cin >> length;
 
-int main()
-{
-	int i, x, dlzka;
-	int pole[101]/*, *hladane*/;
-	//int zaciatok, koniec, pivot;
+    srand((unsigned)time(NULL));
 
-	cout << "Vlozte velkost pola: ";
-	cin >> dlzka;
+    field[0] = (long)rand() % 80;
+    for (i = 1; i <= length; i++)
+        field[i] = field[i-1] + rand()%80;
 
+    for (i = 1; i <= length; i++)
+        cout << "stat_field [" << i-1 << "] : " << field[i-1] << endl;
 
-	srand((unsigned)time(NULL));
+    cout << "Zadajte hladane cislo: ";
+    cin >> x;
+    int index;
+    index = FindB(x, field, length);
 
-
-	pole[0] = (long)rand() % 80;
-
-	for (i = 1; i <= dlzka; i++)
-		pole[i] = pole[i - 1] + rand() % 80;
-
-	for (i = 1; i <= dlzka; i++)
-		cout << "stat_pole [" << i - 1 << "]  :  " << pole[i - 1] << endl;
-
-	cout << "vlozte hladane cislo: ";
-	cin >> x;
-
-	int index;
-	index = NajdiCisloB(x, pole, dlzka);
-
-	return 0;
+    return 0;
 }
