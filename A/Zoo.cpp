@@ -53,3 +53,53 @@ int Zoo::GetHodnota()
 	return hodn_zvierata;
 }
 
+
+
+________________________________________________________
+
+
+
+#include "STT.h"
+
+STT::STT(char *place, char *animal, int number, int value){
+    strcpy(STT::place_STT, place);
+    strcpy(STT::animal, animal);
+    STT::nmb_animals = number;
+    STT::vlue_animals = value;
+}
+
+void STT::SetPlace(char *Plc){
+    strcpy(place_STT, Plc);
+}
+
+char *STT::GetPlace(){
+    /*char *pom;
+    pom = new char[20];
+    strcpy(pom, place_STT);
+    return pom;*/
+    return place_STT;
+}
+
+void STT::SetAnimal(char *Anml){
+    strcpy(animal, Anml);
+}
+char *STT::GetAnimal(){
+    /*char *pom;
+    pom = new char[20];
+    strcpy(pom, zviera);
+    return pom;*/
+    return animal;
+}
+
+void STT::SetNumber(int Nmbr){
+    nmb_animals = Nmbr;
+}
+int STT::GetNumber(){
+    return nmb_animals;
+}
+void STT::SetValue(int Vlue){
+    vlue_animals = Vlue;
+}
+int STT::GetValue(){
+    return vlue_animals;
+}
